@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>ลอยกระทงออนไลน์ ไกลบ้าน — Loy Krathong Online</title>
+    <meta name="description" content="ลอยกระทงออนไลน์ กรุงเทพฯ เหนือ อีสาน ใต้ และอีก 9 ประเทศ ออกแบบกระทง อธิษฐาน เสี่ยงเซียมซี • Float a virtual krathong around the world.">
+    <meta name="theme-color" content="#030712">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta property="og:title" content="ลอยกระทงออนไลน์ ไกลบ้าน">
+    <meta property="og:description" content="ลอยกระทงออนไลน์รอบโลก + เสี่ยงเซียมซีมงคล • Float a virtual krathong around the world">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://keng14.github.io/Loykrathong-Far-from-Home/">
+    <meta property="og:image" content="https://keng14.github.io/Loykrathong-Far-from-Home/assets/share.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://keng14.github.io/Loykrathong-Far-from-Home/assets/share.jpg">
+    <link rel="manifest" href="manifest.webmanifest">
+    <link rel="icon" href="assets/icons/icon-192.png">
+    <link rel="apple-touch-icon" href="assets/icons/icon-192.png">
+    <!-- Tailwind compiled to a static file (see README → "Rebuild CSS") -->
+    <link rel="stylesheet" href="tailwind.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="bg-night-950 text-slate-100 h-[100dvh] w-screen overflow-hidden flex flex-col relative">
+
+    <!-- Shared vector defs (sky lantern / khom loy) -->
+    <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+        <defs>
+            <radialGradient id="klHalo"><stop offset="0" stop-color="#fde68a" stop-opacity=".6"/><stop offset=".5" stop-color="#fbbf24" stop-opacity=".18"/><stop offset="1" stop-color="#f59e0b" stop-opacity="0"/></radialGradient>
+            <linearGradient id="klPaper" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ea580c"/><stop offset=".45" stop-color="#f59e0b"/><stop offset=".85" stop-color="#fde68a"/><stop offset="1" stop-color="#fffbeb"/></linearGradient>
+            <linearGradient id="klSide" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#7c2d12" stop-opacity=".45"/><stop offset=".35" stop-color="#7c2d12" stop-opacity="0"/><stop offset=".65" stop-color="#fff" stop-opacity=".12"/><stop offset="1" stop-color="#7c2d12" stop-opacity=".5"/></linearGradient>
+            <linearGradient id="ssCup" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#7f1d1d"/><stop offset=".35" stop-color="#dc2626"/><stop offset=".6" stop-color="#ef4444"/><stop offset="1" stop-color="#7f1d1d"/></linearGradient>
+            <linearGradient id="ssGold" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fef9c3"/><stop offset=".5" stop-color="#facc15"/><stop offset="1" stop-color="#a16207"/></linearGradient>
+            <symbol id="siamsi-cup" viewBox="0 0 120 160">
+                <ellipse cx="60" cy="152" rx="34" ry="6" fill="#020617" opacity=".45"/>
+                <g stroke="#a16207" stroke-width=".7">
+                    <rect x="38" y="22" width="5" height="62" rx="2" fill="#f5d08a" transform="rotate(-14 40 84)"/>
+                    <rect x="46" y="16" width="5" height="68" rx="2" fill="#eac27a" transform="rotate(-7 48 84)"/>
+                    <rect x="54" y="12" width="5" height="72" rx="2" fill="#f5d08a" transform="rotate(-2 56 84)"/>
+                    <rect x="62" y="14" width="5" height="70" rx="2" fill="#eac27a" transform="rotate(3 64 84)"/>
+                    <rect x="70" y="18" width="5" height="66" rx="2" fill="#f5d08a" transform="rotate(9 72 84)"/>
+                    <rect x="77" y="24" width="5" height="60" rx="2" fill="#eac27a" transform="rotate(15 80 84)"/>
+                </g>
+                <g>
+                    <rect x="38" y="22" width="5" height="9" rx="2" fill="#dc2626" transform="rotate(-14 40 84)"/>
+                    <rect x="46" y="16" width="5" height="9" rx="2" fill="#dc2626" transform="rotate(-7 48 84)"/>
+                    <rect x="54" y="12" width="5" height="9" rx="2" fill="#dc2626" transform="rotate(-2 56 84)"/>
+                    <rect x="62" y="14" width="5" height="9" rx="2" fill="#dc2626" transform="rotate(3 64 84)"/>
+                    <rect x="70" y="18" width="5" height="9" rx="2" fill="#dc2626" transform="rotate(9 72 84)"/>
+                    <rect x="77" y="24" width="5" height="9" rx="2" fill="#dc2626" transform="rotate(15 80 84)"/>
+                </g>
+                <path d="M 30 70 L 34 146 Q 60 154 86 146 L 90 70 Z" fill="url(#ssCup)"/>
+                <ellipse cx="60" cy="70" rx="30" ry="7" fill="#450a0a"/>
+                <ellipse cx="60" cy="70" rx="30" ry="7" fill="none" stroke="url(#ssGold)" stroke-width="2.4"/>
+                <path d="M 31.2 84 Q 60 92 88.8 84" stroke="url(#ssGold)" stroke-width="2.6" fill="none"/>
+                <path d="M 33.6 134 Q 60 142 86.4 134" stroke="url(#ssGold)" stroke-width="2.6" fill="none"/>
+                <circle cx="60" cy="110" r="14" fill="#7f1d1d" stroke="url(#ssGold)" stroke-width="2"/>
+                <path d="M 60 99 C 63 104 66 106 71 110 C 66 114 63 116 60 121 C 57 116 54 114 49 110 C 54 106 57 104 60 99 Z" fill="url(#ssGold)"/>
+                <circle cx="60" cy="110" r="3" fill="#7f1d1d"/>
+                <path d="M 40 74 Q 39 110 42 142" stroke="#fff" stroke-width="2" opacity=".18" fill="none" stroke-linecap="round"/>
+            </symbol>
+            <symbol id="khomloy" viewBox="0 0 34 48">
+                <circle cx="17" cy="27" r="17" fill="url(#klHalo)"/>
+                <path d="M 6 9 Q 17 3 28 9 L 25 37 Q 17 41 9 37 Z" fill="url(#klPaper)"/>
+                <path d="M 6 9 Q 17 3 28 9 L 25 37 Q 17 41 9 37 Z" fill="url(#klSide)"/>
+                <path d="M 11.5 7 L 12.6 39 M 17 5.4 L 17 40 M 22.5 7 L 21.4 39" stroke="#9a3412" stroke-width=".55" opacity=".35"/>
+                <path d="M 7.4 20 Q 17 23 26.6 20" stroke="#9a3412" stroke-width=".5" opacity=".3" fill="none"/>
+                <path d="M 6 9 Q 17 3 28 9" stroke="#7c2d12" stroke-width=".8" fill="none" opacity=".55"/>
+                <ellipse cx="17" cy="37.6" rx="8" ry="2" fill="#fff7ed" opacity=".9"/>
+                <ellipse cx="17" cy="36" rx="2.1" ry="3.1" fill="#fffbeb"/>
+                <ellipse cx="17" cy="36.6" rx="1" ry="1.6" fill="#fb923c"/>
+            </symbol>
+        </defs>
+    </svg>
+
+    <!-- Drag & Drop Overlay -->
+    <div id="drag-drop-overlay" class="absolute inset-0 bg-night-950/90 z-[60] hidden flex-col items-center justify-center border-4 border-dashed border-gold-500/60 m-4 rounded-3xl pointer-events-none">
+        <i data-icon="upload" class="w-14 h-14 text-gold-400 mb-3 animate-bounce"></i>
+        <p id="drag-drop-title" class="text-xl font-bold text-amber-200 text-center px-4"></p>
+        <p id="drag-drop-sub" class="text-sm text-slate-400 mt-1 text-center px-4"></p>
+    </div>
+
+    <!-- Top Navigation Bar -->
+    <header id="main-header" class="safe-top absolute top-0 left-0 right-0 z-30 flex flex-wrap items-center justify-between px-3 py-2 bg-night-950/80 backdrop-blur-md border-b border-slate-800/80 gap-2 transition-all duration-300">
+        <div class="flex items-center gap-2 min-w-0">
+            <div class="w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-gradient-to-tr from-amber-600 to-gold-400 flex items-center justify-center shadow-lg shadow-amber-500/20 text-night-950 shrink-0">
+                <i data-icon="moon" class="w-5 h-5"></i>
+            </div>
+            <div class="min-w-0">
+                <h1 class="text-xs sm:text-sm font-bold text-amber-200 tracking-wide flex items-center gap-1.5">
+                    <span id="ui-app-title">World Loy Krathong</span>
+                    <span id="ui-badge-countries" class="text-[10px] bg-gold-500/20 text-gold-300 border border-gold-500/30 px-1.5 py-0.5 rounded-full whitespace-nowrap"></span>
+                </h1>
+                <p id="countdown-pill" class="text-[10px] text-amber-300/90 font-medium truncate"></p>
+            </div>
+        </div>
+
+        <!-- Country Switcher Tabs -->
+        <nav class="order-3 lg:order-2 w-full lg:w-auto flex items-center justify-center py-0.5" aria-label="Location">
+            <div id="country-tabs-container" class="w-full lg:w-auto"></div>
+        </nav>
+
+        <div class="order-2 lg:order-3 flex items-center gap-1 sm:gap-1.5 ml-auto">
+            <div class="flex items-center bg-slate-900 border border-slate-700 rounded-xl p-0.5 text-[11px] font-bold" role="group" aria-label="Language">
+                <button onclick="setLanguage('th')" id="lang-btn-th" class="px-2 py-1 rounded-lg transition">ไทย</button>
+                <button onclick="setLanguage('en')" id="lang-btn-en" class="px-2 py-1 rounded-lg transition">EN</button>
+                <button onclick="setLanguage('zh')" id="lang-btn-zh" class="px-2 py-1 rounded-lg transition">中文</button>
+            </div>
+            <button onclick="openTutorial()" class="hdr-btn" id="btn-help" aria-label="help">
+                <span class="w-4 text-center font-bold text-gold-400 leading-none">?</span>
+                <span id="ui-btn-help" class="hidden xl:inline"></span>
+            </button>
+            <button onclick="toggleFullScreenMode()" class="hdr-btn" id="btn-fullscreen">
+                <i data-icon="expand" class="w-4 h-4 text-gold-400"></i>
+                <span id="ui-btn-fullscreen" class="hidden xl:inline"></span>
+            </button>
+            <button onclick="openBgManagerModal()" class="hdr-btn" id="btn-bg">
+                <i data-icon="image" class="w-4 h-4 text-gold-400"></i>
+                <span id="ui-btn-bg" class="hidden xl:inline"></span>
+            </button>
+            <button onclick="openCloudSetupModal()" class="hdr-btn !bg-emerald-950/80 hover:!bg-emerald-900/85 !border-emerald-700/60 !text-emerald-300" id="btn-cloud">
+                <span id="cloud-dot" class="w-2 h-2 rounded-full bg-slate-500"></span>
+                <span id="ui-btn-cloud" class="hidden xl:inline"></span>
+            </button>
+            <button onclick="toggleAmbientSound()" class="hdr-btn" id="btn-sound">
+                <i id="sound-icon" data-icon="volume-x" class="w-4 h-4"></i>
+                <span id="sound-label" class="hidden xl:inline"></span>
+            </button>
+            <button onclick="triggerFireworksBurst(3)" class="hdr-btn !bg-amber-500/20 hover:!bg-amber-500/30 !border-amber-500/40 !text-amber-300" id="btn-fireworks">
+                <i data-icon="sparkles" class="w-4 h-4"></i>
+                <span id="ui-btn-fireworks" class="hidden md:inline"></span>
+            </button>
+        </div>
+    </header>
+
+    <button id="exit-immersive-btn" onclick="toggleFullScreenMode()" class="fixed top-4 right-4 z-50 hidden px-3.5 py-2 rounded-full bg-night-900/90 hover:bg-night-800 border border-gold-500/50 text-xs font-bold text-gold-300 shadow-2xl backdrop-blur-md items-center gap-2 transition">
+        <i data-icon="compress" class="w-4 h-4"></i>
+        <span id="ui-btn-exit-fullscreen"></span>
+    </button>
+
+    <!-- Main Interactive Viewport -->
+    <main id="scene" class="relative flex-1 w-full h-full overflow-hidden cursor-crosshair">
+        <canvas id="skyline-canvas" class="absolute inset-0 w-full h-full pointer-events-none"></canvas>
+        <video id="country-bg-video" class="absolute inset-0 w-full h-full object-cover opacity-0 pointer-events-none" muted loop playsinline preload="auto" disablepictureinpicture></video>
+        <div id="country-bg-layer" class="absolute inset-0 bg-cover bg-center opacity-0 pointer-events-none"></div>
+        <div class="absolute inset-0 bg-gradient-to-t from-night-950/70 via-transparent to-night-950/40 pointer-events-none"></div>
+
+        <div id="lanterns-layer" class="absolute inset-0 overflow-hidden pointer-events-none"></div>
+        <canvas id="fireworks-canvas" class="absolute inset-0 w-full h-full pointer-events-none z-10"></canvas>
+
+        <!-- River -->
+        <div id="river" class="absolute bottom-0 left-0 right-0 h-[46vh] sm:h-[50vh] water-surface pointer-events-auto overflow-hidden z-20">
+            <canvas id="water-reflection-canvas" class="absolute inset-0 w-full h-full pointer-events-none opacity-60"></canvas>
+            <div id="river-krathongs-layer" class="relative w-full h-full overflow-hidden"></div>
+            <div id="river-footer-info" class="safe-bottom absolute bottom-1.5 left-0 right-0 text-center pointer-events-none px-3 z-30">
+                <p id="current-scene-title" class="text-xs sm:text-sm font-bold text-amber-200/95 drop-shadow"></p>
+                <p id="ui-river-hint" class="text-[10px] text-slate-200/90 drop-shadow"></p>
+            </div>
+        </div>
+    </main>
+
+    <!-- Studio Toggle -->
+    <div id="studio-toggle-wrapper" class="absolute bottom-14 sm:bottom-16 right-4 z-30 transition-all duration-300">
+        <button onclick="toggleStudioPanel()" class="px-4 py-3 rounded-2xl bg-gradient-to-r from-amber-500 to-gold-500 text-night-950 font-bold shadow-xl shadow-amber-500/30 flex items-center gap-2 hover:scale-105 transition active:scale-95 border border-gold-300">
+            <i id="toggle-studio-icon" data-icon="eye" class="w-5 h-5"></i>
+            <span id="toggle-studio-text" class="text-xs sm:text-sm"></span>
+        </button>
+    </div>
+
+    <!-- Krathong Studio -->
+    <section id="studio-card" class="absolute top-24 lg:top-16 right-3 left-3 sm:left-auto sm:right-4 sm:w-[410px] max-h-[calc(100dvh-6.8rem)] lg:max-h-[calc(100dvh-5rem)] bg-night-900/95 backdrop-blur-xl border border-gold-500/35 rounded-3xl shadow-2xl z-40 flex flex-col overflow-hidden transition-all duration-300">
+        <div class="flex items-center justify-between px-4 py-2.5 bg-night-800/90 border-b border-slate-700/80">
+            <h2 class="text-xs sm:text-sm font-bold text-gold-300 flex items-center gap-2">
+                <i data-icon="lotus" class="w-4 h-4"></i> <span id="ui-studio-title"></span>
+            </h2>
+            <button onclick="toggleStudioPanel()" class="w-7 h-7 rounded-full bg-slate-700/60 hover:bg-slate-600 flex items-center justify-center text-slate-300 transition" aria-label="close">
+                <i data-icon="x" class="w-4 h-4"></i>
+            </button>
+        </div>
+
+        <div class="flex border-b border-slate-800 bg-night-950/50 text-xs font-semibold">
+            <button id="tab-btn-design" onclick="switchStudioTab('design')" class="flex-1 py-2.5 text-center border-b-2 transition"></button>
+            <button id="tab-btn-wish" onclick="switchStudioTab('wish')" class="flex-1 py-2.5 text-center border-b-2 transition"></button>
+        </div>
+
+        <div class="flex-1 overflow-y-auto p-3.5 sm:p-4 custom-scrollbar space-y-3.5">
+            <!-- Tab 1: Design -->
+            <div id="studio-tab-design" class="space-y-3.5">
+                <div class="relative w-full h-44 rounded-2xl border border-slate-700/80 flex items-center justify-center overflow-hidden shadow-inner" id="live-preview-stage">
+                    <svg class="absolute inset-0 w-full h-full" viewBox="0 0 400 176" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+                        <defs>
+                            <linearGradient id="pvSky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#030712"/><stop offset=".55" stop-color="#1e1b4b"/><stop offset="1" stop-color="#3b2459"/></linearGradient>
+                            <radialGradient id="pvMoon"><stop offset="0" stop-color="#fef9c3" stop-opacity=".55"/><stop offset="1" stop-color="#fef9c3" stop-opacity="0"/></radialGradient>
+                            <linearGradient id="pvWater" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1e3a5f"/><stop offset=".35" stop-color="#0c1a3a"/><stop offset="1" stop-color="#020617"/></linearGradient>
+                            <radialGradient id="pvHaze" cx=".5" cy="1" r=".6"><stop offset="0" stop-color="#facc15" stop-opacity=".28"/><stop offset="1" stop-color="#facc15" stop-opacity="0"/></radialGradient>
+                        </defs>
+                        <rect width="400" height="176" fill="url(#pvSky)"/>
+                        <g fill="#fef9c3"><circle cx="40" cy="22" r="1"/><circle cx="92" cy="48" r=".8"/><circle cx="150" cy="16" r="1.2"/><circle cx="210" cy="38" r=".7"/><circle cx="258" cy="12" r="1"/><circle cx="372" cy="70" r=".8"/><circle cx="20" cy="80" r=".7"/><circle cx="118" cy="86" r=".9"/><circle cx="286" cy="64" r=".7"/></g>
+                        <circle cx="330" cy="40" r="46" fill="url(#pvMoon)"/>
+                        <circle cx="330" cy="40" r="15" fill="#fef9c3"/>
+                        <circle cx="325" cy="36" r="3" fill="#fde68a" opacity=".6"/><circle cx="335" cy="45" r="2" fill="#fde68a" opacity=".5"/>
+                        <path d="M 0 118 L 22 108 L 40 112 L 70 100 L 92 106 L 120 96 L 150 108 L 400 108 L 400 118 Z" fill="#0b1026" opacity=".9"/>
+                        <rect y="116" width="400" height="60" fill="url(#pvWater)"/>
+                        <rect y="100" width="400" height="40" fill="url(#pvHaze)"/>
+                        <g fill="#fde68a" opacity=".5"><rect x="318" y="121" width="26" height="1.5" rx=".7"/><rect x="312" y="128" width="34" height="1.5" rx=".7"/><rect x="321" y="136" width="20" height="1.4" rx=".7"/><rect x="309" y="146" width="40" height="1.4" rx=".7" opacity=".7"/><rect x="316" y="157" width="28" height="1.3" rx=".7" opacity=".5"/></g>
+                        <g stroke="#7dd3fc" stroke-width=".8" opacity=".25" fill="none"><path d="M 20 132 q 10 -3 20 0 t 20 0"/><path d="M 90 150 q 10 -3 20 0 t 20 0"/><path d="M 240 140 q 10 -3 20 0 t 20 0"/><path d="M 40 164 q 10 -3 20 0 t 20 0"/></g>
+                    </svg>
+                    <div class="floating-krathong w-36 h-36 flex items-center justify-center" id="studio-krathong-preview"></div>
+                    <div id="ui-preview-badge" class="absolute bottom-2 left-3 px-2.5 py-0.5 rounded-full bg-night-950/85 border border-gold-500/30 text-[10px] text-amber-200"></div>
+                    <div id="preview-summary-pill" class="absolute top-2 right-2.5 px-2 py-0.5 rounded-full bg-slate-900/85 border border-slate-700 text-[10px] text-slate-300"></div>
+                </div>
+
+                <button onclick="randomizeKrathong()" class="w-full py-2 rounded-xl bg-slate-800 hover:bg-slate-700 border border-slate-700 text-xs font-bold text-amber-300 flex items-center justify-center gap-2 transition shadow">
+                    <i data-icon="dice" class="w-4 h-4"></i> <span id="ui-btn-randomize"></span>
+                </button>
+
+                <div>
+                    <label id="ui-label-base" class="text-xs font-bold text-slate-300 block mb-1.5"></label>
+                    <div class="grid grid-cols-3 gap-1.5" id="bases-grid"></div>
+                </div>
+                <div>
+                    <label id="ui-label-flower" class="text-xs font-bold text-slate-300 block mb-1.5"></label>
+                    <div class="grid grid-cols-3 gap-1.5" id="flowers-grid"></div>
+                </div>
+                <div>
+                    <label class="text-xs font-bold text-slate-300 mb-1.5 flex items-center justify-between gap-2"><span id="ui-label-topping"></span><span id="topping-count" class="text-[10px] font-semibold px-2 py-0.5 rounded-full bg-amber-500/15 text-amber-300 border border-amber-500/30"></span></label>
+                    <div class="grid grid-cols-4 gap-1.5" id="toppings-grid"></div>
+                    <p id="topping-meaning" class="mt-2 text-[11px] leading-snug text-amber-200/90 bg-amber-500/10 border border-amber-500/25 rounded-xl px-3 py-2"></p>
+                </div>
+
+                <button onclick="switchStudioTab('wish')" class="w-full py-3 rounded-2xl bg-gradient-to-r from-amber-500 to-gold-500 text-night-950 font-bold text-sm shadow-lg shadow-amber-500/20 flex items-center justify-center gap-2 hover:brightness-105 transition">
+                    <span id="ui-btn-next-wish"></span> <i data-icon="arrow-right" class="w-4 h-4"></i>
+                </button>
+            </div>
+
+            <!-- Tab 2: Wish -->
+            <div id="studio-tab-wish" class="space-y-3.5 hidden">
+                <div>
+                    <label id="ui-label-sender" for="user-name-input" class="text-xs font-bold text-slate-300 block mb-1"></label>
+                    <input type="text" id="user-name-input" maxlength="40" autocomplete="name" class="w-full px-3.5 py-2.5 rounded-xl bg-night-950 border border-slate-700 text-base sm:text-sm text-slate-100 focus:outline-none focus:border-gold-500 transition">
+                </div>
+                <div>
+                    <div class="flex justify-between items-center mb-1">
+                        <label id="ui-label-wish" for="user-wish-input" class="text-xs font-bold text-slate-300"></label>
+                        <button onclick="generateRandomWish()" class="text-[11px] text-gold-400 hover:underline flex items-center gap-1">
+                            <i data-icon="wand" class="w-3.5 h-3.5"></i> <span id="ui-btn-random-wish"></span>
+                        </button>
+                    </div>
+                    <textarea id="user-wish-input" rows="3" maxlength="200" class="w-full px-3.5 py-2.5 rounded-xl bg-night-950 border border-slate-700 text-base sm:text-sm text-slate-100 focus:outline-none focus:border-gold-500 transition resize-none custom-scrollbar"></textarea>
+                    <div class="text-right text-[10px] text-slate-500"><span id="wish-count">0</span>/200</div>
+                </div>
+                <div>
+                    <span id="ui-label-wish-cat" class="text-[11px] text-slate-400 block mb-1.5"></span>
+                    <div class="grid grid-cols-2 gap-2 text-xs">
+                        <button onclick="setWishByCategory('wealth')" id="ui-cat-wealth" class="cat-btn"></button>
+                        <button onclick="setWishByCategory('love')" id="ui-cat-love" class="cat-btn"></button>
+                        <button onclick="setWishByCategory('health')" id="ui-cat-health" class="cat-btn"></button>
+                        <button onclick="setWishByCategory('career')" id="ui-cat-career" class="cat-btn"></button>
+                    </div>
+                </div>
+                <div class="pt-2 flex gap-2">
+                    <button onclick="switchStudioTab('design')" class="px-4 py-3 rounded-2xl bg-slate-800 hover:bg-slate-700 border border-slate-700 text-xs font-bold text-slate-300 transition flex items-center gap-1.5">
+                        <i data-icon="arrow-left" class="w-4 h-4"></i> <span id="ui-btn-back"></span>
+                    </button>
+                    <button id="launch-btn" onclick="launchUserKrathong()" class="flex-1 py-3 rounded-2xl bg-gradient-to-r from-amber-500 to-gold-500 text-night-950 font-bold text-sm shadow-xl shadow-amber-500/30 flex items-center justify-center gap-2 hover:scale-[1.02] transition active:scale-95 disabled:opacity-60">
+                        <i data-icon="flame" class="w-4 h-4"></i> <span id="ui-btn-launch"></span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Wish Inspector Modal -->
+    <div id="wish-inspector-modal" class="modal fixed inset-0 bg-night-950/80 backdrop-blur-md z-50 hidden items-center justify-center p-4" data-close="closeWishInspector">
+        <div class="modal-box bg-night-900 border border-gold-500/40 w-full max-w-md rounded-3xl p-6 shadow-2xl relative flex flex-col items-center text-center">
+            <button onclick="closeWishInspector()" class="absolute top-4 right-4 w-8 h-8 rounded-full bg-slate-800 hover:bg-slate-700 flex items-center justify-center text-slate-300 transition" aria-label="close">
+                <i data-icon="x" class="w-4 h-4"></i>
+            </button>
+            <div class="w-28 h-28 my-1 floating-krathong" id="inspector-krathong-svg"></div>
+            <div id="inspector-country-pill" class="px-3 py-1 rounded-full bg-amber-500/20 border border-amber-500/30 text-xs font-bold text-amber-300 mb-2"></div>
+            <h3 id="inspector-name" class="text-base font-bold text-slate-100 break-words max-w-full"></h3>
+            <p id="inspector-details" class="text-xs text-slate-400 mb-4"></p>
+            <div class="w-full bg-night-950 p-4 rounded-2xl border border-slate-800 mb-5 relative">
+                <span class="text-gold-500/40 text-3xl absolute top-0 left-3 font-serif">“</span>
+                <p id="inspector-wish" class="text-sm text-amber-100/90 italic px-4 break-words"></p>
+                <span class="text-gold-500/40 text-3xl absolute -bottom-3 right-3 font-serif">”</span>
+            </div>
+            <div class="flex items-center gap-3 w-full">
+                <button id="bless-btn" onclick="sendBlessingHeart()" class="flex-1 py-3 rounded-2xl bg-rose-500/20 hover:bg-rose-500/30 border border-rose-500/40 text-rose-300 font-bold text-sm flex items-center justify-center gap-2 transition active:scale-95 shadow">
+                    <i data-icon="heart" class="w-4 h-4 text-rose-500"></i> <span id="ui-btn-bless"></span> (<span id="inspector-likes">1</span>)
+                </button>
+                <button onclick="closeWishInspector()" id="ui-btn-close-inspector" class="px-5 py-3 rounded-2xl bg-slate-800 hover:bg-slate-700 text-slate-200 font-bold text-sm transition"></button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Commemorative Card Modal -->
+    <div id="commemorative-modal" class="modal fixed inset-0 bg-night-950/85 backdrop-blur-md z-50 hidden items-center justify-center p-4" data-close="closeCommemorativeModal">
+        <div class="modal-box bg-gradient-to-b from-night-900 to-night-950 border border-gold-400/50 w-full max-w-sm rounded-3xl p-6 shadow-2xl relative flex flex-col items-center text-center max-h-[92dvh] overflow-y-auto custom-scrollbar">
+            <div class="w-12 h-12 rounded-2xl bg-gold-500/20 border border-gold-500/40 flex items-center justify-center text-gold-400 mb-3 shadow-lg">
+                <i data-icon="award" class="w-6 h-6"></i>
+            </div>
+            <h3 id="ui-card-success" class="text-lg font-bold text-amber-200"></h3>
+            <p id="card-country-badge" class="text-xs text-gold-400 font-medium mb-3"></p>
+
+            <div id="card-preview-box" class="w-full bg-night-950 border border-slate-700/80 rounded-2xl p-4 mb-4 relative overflow-hidden shadow-inner">
+                <div class="absolute inset-0 bg-[radial-gradient(#fde047_1px,transparent_1px)] [background-size:12px_12px] opacity-15"></div>
+                <div class="w-28 h-28 mx-auto my-1" id="card-krathong-svg"></div>
+                <h4 id="card-user-name" class="text-sm font-bold text-slate-100 mt-2 break-words"></h4>
+                <p id="card-user-wish" class="text-xs text-amber-200/90 italic mt-1 line-clamp-3 break-words"></p>
+            </div>
+            <img id="card-image-output" alt="" class="hidden w-full rounded-2xl border border-gold-500/40 mb-2">
+            <p id="ui-card-save-hint" class="hidden text-[11px] text-slate-400 mb-3"></p>
+
+            <div class="w-full rounded-2xl border border-fuchsia-400/40 bg-gradient-to-br from-fuchsia-500/15 via-night-950 to-amber-500/10 p-3 mb-3">
+                <p id="ui-siamsi-ask" class="text-xs font-bold text-amber-100 mb-2"></p>
+                <div class="flex gap-2">
+                    <button onclick="openSiamsi()" class="flex-1 py-2.5 rounded-xl bg-gradient-to-r from-fuchsia-500 to-rose-500 text-white font-bold text-xs shadow-lg shadow-fuchsia-500/25 hover:brightness-110 transition flex items-center justify-center gap-1.5">
+                        <span aria-hidden="true">🎋</span> <span id="ui-btn-siamsi"></span>
+                    </button>
+                    <button onclick="viewRiverAfterFloat()" id="ui-btn-view-river" class="px-4 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 border border-slate-700 text-xs font-bold text-slate-200 transition"></button>
+                </div>
+            </div>
+            <div class="space-y-2 w-full">
+                <button id="card-image-btn" onclick="makeSouvenirImage()" class="w-full py-3 rounded-2xl bg-gradient-to-r from-amber-500 to-gold-500 text-night-950 font-bold text-sm shadow-lg shadow-amber-500/30 flex items-center justify-center gap-2 hover:brightness-105 transition disabled:opacity-60">
+                    <i data-icon="download" class="w-4 h-4"></i> <span id="ui-btn-card-image"></span>
+                </button>
+                <button onclick="copyWishText()" class="w-full py-2.5 rounded-2xl bg-slate-800 hover:bg-slate-700 border border-slate-700 text-xs font-bold text-amber-200 transition flex items-center justify-center gap-2">
+                    <i data-icon="copy" class="w-4 h-4"></i> <span id="ui-btn-share-card"></span>
+                </button>
+                <button onclick="createNewKrathong()" id="ui-btn-new-krathong" class="w-full py-2 rounded-2xl bg-transparent hover:bg-slate-800/50 text-[11px] text-slate-400 transition"></button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Intro: ① language → ② title "ลอยกระทงออนไลน์ ไกลบ้าน" → then location picker -->
+    <div id="intro-screen" class="fixed inset-0 z-[58] hidden flex-col items-center justify-center overflow-hidden">
+        <div class="absolute inset-0 bg-cover bg-center scale-105" style="background-image:url('assets/bg/th.jpg')"></div>
+        <div class="absolute inset-0 bg-gradient-to-b from-night-950/80 via-night-950/60 to-night-950/95 backdrop-blur-[2px]"></div>
+        <div id="intro-lanterns" class="absolute inset-0 pointer-events-none overflow-hidden"></div>
+
+        <!-- Stage A: choose language -->
+        <div id="intro-stage-lang" class="intro-stage relative w-full max-w-md px-6 text-center safe-top">
+            <div class="text-4xl mb-3" aria-hidden="true">🌕</div>
+            <p class="text-sm font-bold text-amber-100 leading-relaxed">เลือกภาษา<br>Choose your language<br>选择语言</p>
+            <div class="mt-6 grid gap-3">
+                <button onclick="introPickLang('th')" class="intro-lang">
+                    <span class="text-2xl">🇹🇭</span><span class="flex-1 text-left"><b class="block text-base">ภาษาไทย</b><span class="text-xs text-slate-400">Thai</span></span><span class="text-gold-400">→</span>
+                </button>
+                <button onclick="introPickLang('en')" class="intro-lang">
+                    <span class="text-2xl">🇬🇧</span><span class="flex-1 text-left"><b class="block text-base">English</b><span class="text-xs text-slate-400">อังกฤษ</span></span><span class="text-gold-400">→</span>
+                </button>
+                <button onclick="introPickLang('zh')" class="intro-lang">
+                    <span class="text-2xl">🇨🇳</span><span class="flex-1 text-left"><b class="block text-base">中文</b><span class="text-xs text-slate-400">Chinese</span></span><span class="text-gold-400">→</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Stage B: title -->
+        <div id="intro-stage-title" class="intro-stage hidden relative w-full max-w-2xl px-6 text-center safe-top max-h-[100dvh] overflow-y-auto custom-scrollbar py-8">
+            <div class="flex justify-center mb-5">
+                <div class="flex items-center bg-night-900/80 border border-slate-700 rounded-xl p-0.5 text-[11px] font-bold" role="group" aria-label="Language">
+                    <button onclick="introPickLang('th', true)" data-lang="th" class="intro-lang-mini px-2.5 py-1 rounded-lg">ไทย</button>
+                    <button onclick="introPickLang('en', true)" data-lang="en" class="intro-lang-mini px-2.5 py-1 rounded-lg">EN</button>
+                    <button onclick="introPickLang('zh', true)" data-lang="zh" class="intro-lang-mini px-2.5 py-1 rounded-lg">中文</button>
+                </div>
+            </div>
+            <div class="w-28 h-28 mx-auto floating-krathong" id="intro-krathong"></div>
+            <h1 class="intro-title mt-2 leading-[1.15]">
+                <span id="ui-intro-title1" class="block text-4xl sm:text-6xl font-bold"></span>
+                <span id="ui-intro-title2" class="block text-3xl sm:text-5xl font-bold mt-1"></span>
+            </h1>
+            <p id="ui-intro-tagline" class="mt-3 text-sm sm:text-base text-amber-100/90"></p>
+            <p id="intro-countdown" class="mt-1 text-xs text-gold-300/90"></p>
+            <ol id="tutorial-steps" class="mt-6 grid grid-cols-2 sm:grid-cols-4 gap-2 text-left"></ol>
+            <button onclick="closeTutorial()" id="ui-tut-start" class="mt-6 w-full sm:w-auto sm:px-14 py-3.5 rounded-2xl bg-gradient-to-r from-amber-500 to-gold-500 text-night-950 font-bold text-base shadow-xl shadow-amber-500/30 hover:scale-[1.03] active:scale-95 transition"></button>
+        </div>
+    </div>
+
+    <!-- Location picker (step 1) -->
+    <div id="location-modal" class="modal fixed inset-0 bg-night-950/90 backdrop-blur-md z-50 hidden items-center justify-center p-3 sm:p-4" data-close="closeLocationPicker">
+        <div class="modal-box relative w-full max-w-4xl max-h-[94dvh] rounded-3xl shadow-2xl border border-gold-500/35 bg-night-900 flex flex-col overflow-hidden">
+            <div class="flex items-start justify-between gap-3 px-5 pt-5 pb-3 border-b border-slate-800">
+                <div>
+                    <p id="ui-loc-step" class="text-[11px] font-bold text-gold-400 tracking-wide"></p>
+                    <h3 id="ui-loc-title" class="text-base sm:text-lg font-bold text-amber-100"></h3>
+                </div>
+                <button onclick="closeLocationPicker()" id="loc-close" class="w-8 h-8 shrink-0 rounded-full bg-slate-800 hover:bg-slate-700 flex items-center justify-center text-slate-300 transition" aria-label="close">
+                    <i data-icon="x" class="w-4 h-4"></i>
+                </button>
+            </div>
+            <div id="location-zones" class="flex-1 overflow-y-auto custom-scrollbar px-5 py-4 space-y-5"></div>
+        </div>
+    </div>
+
+    <!-- Siam Si (เซียมซี) Modal -->
+    <div id="siamsi-modal" class="modal fixed inset-0 bg-night-950/85 backdrop-blur-md z-50 hidden items-center justify-center p-4" data-close="closeSiamsi">
+        <div class="modal-box relative w-full max-w-sm rounded-3xl p-6 shadow-2xl border border-fuchsia-400/40 bg-gradient-to-b from-[#1a0f2e] via-night-900 to-night-950 flex flex-col items-center text-center max-h-[92dvh] overflow-y-auto custom-scrollbar">
+            <button onclick="closeSiamsi()" class="absolute top-4 right-4 w-8 h-8 rounded-full bg-slate-800 hover:bg-slate-700 flex items-center justify-center text-slate-300 transition" aria-label="close">
+                <i data-icon="x" class="w-4 h-4"></i>
+            </button>
+            <h3 id="ui-siamsi-title" class="text-lg font-bold bg-gradient-to-r from-amber-200 via-rose-200 to-fuchsia-300 bg-clip-text text-transparent"></h3>
+
+            <!-- Stage 1: pick a topic -->
+            <div id="siamsi-stage-pick" class="w-full">
+                <p id="ui-siamsi-pick" class="text-xs text-slate-400 mt-1 mb-3"></p>
+                <div class="w-28 h-36 mx-auto mb-3">
+                    <svg viewBox="0 0 120 160" width="100%" height="100%" aria-hidden="true"><use href="#siamsi-cup"/></svg>
+                </div>
+                <div id="siamsi-topics" class="grid grid-cols-2 gap-2"></div>
+                <button onclick="closeSiamsi(); viewRiverAfterFloat()" id="ui-siamsi-skip" class="mt-3 w-full py-2 rounded-xl text-[11px] text-slate-400 hover:bg-slate-800/60 transition"></button>
+            </div>
+
+            <!-- Stage 2: shaking -->
+            <div id="siamsi-stage-shake" class="hidden w-full py-2">
+                <div class="relative w-32 h-44 mx-auto">
+                    <svg id="siamsi-cup-anim" class="siamsi-cup absolute inset-0" viewBox="0 0 120 160" width="100%" height="100%" aria-hidden="true"><use href="#siamsi-cup"/></svg>
+                    <svg id="siamsi-stick" class="siamsi-stick absolute inset-0" viewBox="0 0 120 160" width="100%" height="100%" aria-hidden="true">
+                        <rect x="57" y="10" width="6" height="70" rx="2" fill="#f5d08a" stroke="#a16207" stroke-width=".8"/>
+                        <rect x="57" y="10" width="6" height="12" rx="2" fill="#dc2626"/>
+                    </svg>
+                </div>
+                <p id="ui-siamsi-shaking" class="text-sm text-amber-100 mt-3 animate-pulse"></p>
+            </div>
+
+            <!-- Stage 3: result -->
+            <div id="siamsi-stage-result" class="hidden w-full">
+                <div class="siamsi-card relative w-full mt-3 rounded-2xl p-5 border border-amber-400/50 bg-gradient-to-br from-amber-500/15 via-night-950 to-fuchsia-600/20 overflow-hidden">
+                    <div class="absolute -top-10 -right-10 w-32 h-32 rounded-full bg-fuchsia-500/20 blur-2xl pointer-events-none"></div>
+                    <div class="absolute -bottom-12 -left-10 w-32 h-32 rounded-full bg-amber-400/20 blur-2xl pointer-events-none"></div>
+                    <div class="flex items-center justify-between text-[11px] font-bold mb-3 relative">
+                        <span id="siamsi-topic-pill" class="px-2.5 py-1 rounded-full bg-night-950/70 border border-fuchsia-400/40 text-fuchsia-200"></span>
+                        <span id="siamsi-stick-no" class="px-2.5 py-1 rounded-full bg-amber-400 text-night-950"></span>
+                    </div>
+                    <h4 id="siamsi-headline" class="relative text-2xl font-bold text-amber-100 leading-tight mb-2"></h4>
+                    <p id="siamsi-line" class="relative text-sm text-slate-200 mb-4"></p>
+                    <div class="relative flex items-center justify-center gap-3 text-[11px] text-slate-300">
+                        <span class="flex items-center gap-1.5"><span id="siamsi-color-dot" class="w-3 h-3 rounded-full border border-white/40"></span><span id="siamsi-color"></span></span>
+                        <span class="text-slate-600">•</span>
+                        <span id="siamsi-number"></span>
+                    </div>
+                </div>
+                <p id="ui-siamsi-footer" class="text-[11px] text-slate-500 mt-2 mb-3"></p>
+                <div class="grid grid-cols-2 gap-2">
+                    <button onclick="copyFortune()" class="py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 border border-slate-700 text-xs font-bold text-amber-200 transition flex items-center justify-center gap-1.5"><i data-icon="copy" class="w-3.5 h-3.5"></i> <span id="ui-btn-copy-fortune"></span></button>
+                    <button onclick="siamsiPickAgain()" id="ui-btn-siamsi-again" class="py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 border border-slate-700 text-xs font-bold text-fuchsia-200 transition"></button>
+                    <button onclick="fortuneToCard()" class="py-2.5 rounded-xl bg-gradient-to-r from-amber-500 to-gold-500 text-night-950 text-xs font-bold transition hover:brightness-105 flex items-center justify-center gap-1.5"><i data-icon="download" class="w-3.5 h-3.5"></i> <span id="ui-btn-fortune-card"></span></button>
+                    <button onclick="closeSiamsi(); viewRiverAfterFloat()" id="ui-btn-siamsi-done" class="py-2.5 rounded-xl bg-fuchsia-500/20 hover:bg-fuchsia-500/30 border border-fuchsia-400/40 text-xs font-bold text-fuchsia-100 transition"></button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Background Manager Modal -->
+    <div id="bg-manager-modal" class="modal fixed inset-0 bg-night-950/85 backdrop-blur-md z-50 hidden items-center justify-center p-4" data-close="closeBgManagerModal">
+        <div class="modal-box bg-night-900 border border-slate-700 w-full max-w-2xl max-h-[85dvh] rounded-3xl p-5 shadow-2xl flex flex-col">
+            <div class="flex items-center justify-between pb-3 border-b border-slate-800">
+                <h3 class="text-sm font-bold text-gold-300 flex items-center gap-2">
+                    <i data-icon="image" class="w-4 h-4"></i> <span id="ui-bg-modal-title"></span>
+                </h3>
+                <button onclick="closeBgManagerModal()" class="w-7 h-7 rounded-full bg-slate-800 hover:bg-slate-700 flex items-center justify-center text-slate-300 transition" aria-label="close">
+                    <i data-icon="x" class="w-4 h-4"></i>
+                </button>
+            </div>
+            <div id="ui-bg-modal-desc" class="text-xs text-slate-400 py-2"></div>
+            <div class="flex-1 overflow-y-auto custom-scrollbar grid grid-cols-1 sm:grid-cols-2 gap-3 py-2" id="bg-manager-grid"></div>
+            <div class="pt-3 border-t border-slate-800 flex justify-between items-center gap-2">
+                <button onclick="resetAllCustomBackgrounds()" class="px-3 py-2 rounded-xl bg-rose-500/20 hover:bg-rose-500/30 border border-rose-500/40 text-rose-300 text-xs font-semibold transition flex items-center gap-1.5">
+                    <i data-icon="rotate" class="w-3.5 h-3.5"></i> <span id="ui-btn-reset-bg"></span>
+                </button>
+                <button onclick="closeBgManagerModal()" id="ui-btn-done-bg" class="px-5 py-2 rounded-xl bg-gold-500 hover:bg-gold-600 text-night-950 text-xs font-bold transition"></button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Cloud Setup Modal -->
+    <div id="cloud-setup-modal" class="modal fixed inset-0 bg-night-950/85 backdrop-blur-md z-50 hidden items-center justify-center p-4" data-close="closeCloudSetupModal">
+        <div class="modal-box bg-night-900 border border-emerald-500/40 w-full max-w-md rounded-3xl p-6 shadow-2xl relative flex flex-col">
+            <button onclick="closeCloudSetupModal()" class="absolute top-4 right-4 w-8 h-8 rounded-full bg-slate-800 hover:bg-slate-700 flex items-center justify-center text-slate-300 transition" aria-label="close">
+                <i data-icon="x" class="w-4 h-4"></i>
+            </button>
+            <div class="w-12 h-12 rounded-2xl bg-emerald-500/20 border border-emerald-500/40 flex items-center justify-center text-emerald-400 mb-3 shadow-lg">
+                <i data-icon="cloud" class="w-6 h-6"></i>
+            </div>
+            <h3 id="ui-cloud-title" class="text-base font-bold text-emerald-300 mb-1"></h3>
+            <p id="ui-cloud-desc" class="text-xs text-slate-400 mb-3"></p>
+            <ol id="ui-cloud-steps" class="text-[11px] text-slate-300 bg-night-950 p-3 rounded-2xl border border-slate-800 space-y-1.5 mb-3 list-decimal list-inside"></ol>
+            <div class="space-y-3 mb-4 text-xs">
+                <div>
+                    <label for="custom-firebase-input" class="font-bold text-slate-300 block mb-1">Firebase Database URL</label>
+                    <input type="url" id="custom-firebase-input" placeholder="https://your-app-default-rtdb.firebaseio.com" class="w-full px-3.5 py-2.5 rounded-xl bg-night-950 border border-slate-700 text-base sm:text-xs text-slate-100 focus:outline-none focus:border-emerald-500 transition">
+                </div>
+                <div id="cloud-config-feedback" class="hidden font-medium"></div>
+            </div>
+            <div class="flex gap-2">
+                <button onclick="disconnectCloud()" id="ui-btn-disconnect" class="hidden px-4 py-3 rounded-2xl bg-slate-800 hover:bg-slate-700 border border-slate-700 text-xs font-bold text-slate-300 transition"></button>
+                <button onclick="applyCustomFirebaseFromUI()" class="flex-1 py-3 rounded-2xl bg-gradient-to-r from-emerald-500 to-teal-500 text-night-950 font-bold text-sm shadow-lg shadow-emerald-500/20 flex items-center justify-center gap-2 hover:brightness-105 transition">
+                    <i data-icon="link" class="w-4 h-4"></i> <span id="ui-btn-connect-cloud"></span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast -->
+    <div id="toast" role="status" aria-live="polite" class="fixed bottom-6 left-1/2 -translate-x-1/2 bg-emerald-600 text-white px-4 py-2 rounded-full text-xs font-bold shadow-2xl hidden z-[70] items-center gap-2 max-w-[90vw]">
+        <i data-icon="check" class="w-4 h-4"></i> <span id="toast-text"></span>
+    </div>
+
+    <script src="krathong-art.js"></script>
+    <script src="fortunes.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
