@@ -1,5 +1,5 @@
 /* =====================================================================
- * World Loy Krathong Online — app.js
+ * World Loykratong Online — app.js
  * ลอยกระทงออนไลน์ 8 ประเทศรอบโลก
  * ===================================================================== */
 'use strict';
@@ -7,7 +7,7 @@
 /* ---------------------------------------------------------------------
  * 0. CONFIG
  * ------------------------------------------------------------------- */
-// Loy Krathong nights (full moon, 12th Thai lunar month). Add future years here.
+// Loykratong nights (full moon, 12th Thai lunar month). Add future years here.
 const FESTIVAL_DATES = ['2026-11-24'];
 // ── Going public ───────────────────────────────────────────────────────
 // Paste your Firebase Realtime Database URL here and every visitor connects
@@ -106,7 +106,7 @@ const I18N = {
         btnBack: 'ย้อนกลับ', btnLaunch: 'จุดเทียนและลอยกระทงเลย',
         floatedAt: 'ลอย ณ', btnBless: 'ร่วมอนุโมทนา', blessed: 'อนุโมทนาแล้ว', btnCloseInspector: 'ปิดหน้าต่าง',
         cardSuccess: 'ลอยกระทงสำเร็จแล้ว!',
-        btnCardImage: 'สร้างการ์ดที่ระลึกเป็นรูปภาพ', btnShareCard: 'คัดลอกคำอธิษฐานไปแชร์',
+        btnCardImage: 'สร้างการ์ดที่ระลึกเป็นรูปภาพ', btnSaveDraft: 'บันทึกรูปกระทงนี้', btnShareCard: 'คัดลอกคำอธิษฐานไปแชร์',
         cardSaveHint: 'กดค้างที่รูป (มือถือ) หรือคลิกขวา เพื่อบันทึกการ์ด',
         btnViewRiver: 'จบขั้นตอน', btnNewKrathong: '+ ออกแบบกระทงใบใหม่',
         siamsiAsk: '🌕 ลอยเสร็จแล้ว อยากเสี่ยงเซียมซีมงคลต่อไหม?', btnSiamsi: 'เสี่ยงเซียมซี',
@@ -141,12 +141,12 @@ const I18N = {
         defaultWish: 'ขอขมาพระแม่คงคา ขอให้สิ่งไม่ดีลอยไปกับสายน้ำ พบเจอแต่ความสุข ความเจริญรุ่งเรือง'
     },
     en: {
-        appTitle: 'Loy Krathong · Far From Home', badgeCountries: '16 Places',
-        introTitle1: 'Loy Krathong Online', introTitle2: 'Far From Home', introTagline: 'Wherever you are in the world, float a krathong and send your heart home 🏡', docTitle: 'Loy Krathong Online — Far From Home',
+        appTitle: 'Loykratong · Far From Home', badgeCountries: '16 Places',
+        introTitle1: 'Loykratong Online', introTitle2: 'Far From Home', introTagline: 'Wherever you are in the world, float a krathong and send your heart home 🏡', docTitle: 'Loykratong Online — Far From Home',
         appSubtitle: 'Global Thai Festival of Lights • Float & Wish Across Borders',
-        countdownDays: '{n} days to Loy Krathong night • {date}',
-        countdownTomorrow: 'Loy Krathong is tomorrow! • {date}',
-        countdownToday: '🌕 Tonight is Loy Krathong! • {date}',
+        countdownDays: '{n} days to Loykratong night • {date}',
+        countdownTomorrow: 'Loykratong is tomorrow! • {date}',
+        countdownToday: '🌕 Tonight is Loykratong! • {date}',
         btnFullscreen: 'Full Screen', btnExitFullscreen: 'Exit Full Screen', btnBg: 'Scenes', btnCloud: 'Cloud',
         soundOn: 'Mute', soundOff: 'Music', btnFireworks: 'Fireworks',
         dragDropTitle: 'Drop a background file here', dragDropSub: 'Image • GIF • video (mp4/webm) — used for the current country right away',
@@ -167,7 +167,7 @@ const I18N = {
         btnBack: 'Back', btnLaunch: 'Light Candle & Float',
         floatedAt: 'Floated at', btnBless: 'Send Blessing', blessed: 'Blessed', btnCloseInspector: 'Close',
         cardSuccess: 'Your Krathong Is Floating!',
-        btnCardImage: 'Create Souvenir Card Image', btnShareCard: 'Copy Wish to Share',
+        btnCardImage: 'Create Souvenir Card Image', btnSaveDraft: 'Save This Krathong Picture', btnShareCard: 'Copy Wish to Share',
         cardSaveHint: 'Long-press (mobile) or right-click the image to save it',
         btnViewRiver: "I'm done", btnNewKrathong: '+ Design Another Krathong',
         siamsiAsk: '🌕 Floated! Want to draw a lucky Siam Si fortune stick?', btnSiamsi: 'Draw a fortune',
@@ -176,7 +176,7 @@ const I18N = {
         siamsiFooter: 'Every stick is a good one. Believe in yourself ✨', btnCopyFortune: 'Copy', btnSiamsiAgain: 'Another topic',
         btnFortuneCard: 'Add to card', btnSiamsiDone: "I'm done", toastFortuneCopied: 'Fortune copied!',
         cardFortune: 'Siam Si stick #{n}', toppingMeaning: 'Meaning',
-        cardHeading: 'Loy Krathong · Far From Home',
+        cardHeading: 'Loykratong · Far From Home',
         bgModalTitle: 'Country Backgrounds',
         bgModalDesc: 'The original paintings are used by default. Upload your own (or drag & drop anywhere). Uploads stay on this device only.',
         bgDefault: 'Original painting', bgCustom: 'Your upload', bgVideo: 'Video', bgGif: 'GIF', btnChangeImg: 'Upload', btnUseDefault: 'Use original',
@@ -203,7 +203,7 @@ const I18N = {
     },
     zh: {
         appTitle: '远方·在线水灯节', badgeCountries: '16个地点',
-        introTitle1: '在线放水灯', introTitle2: '远方的家', introTagline: '无论身在世界哪里，都能放一盏水灯，把心意寄回家 🏡', docTitle: '远方·在线水灯节 Loy Krathong Online',
+        introTitle1: '在线放水灯', introTitle2: '远方的家', introTagline: '无论身在世界哪里，都能放一盏水灯，把心意寄回家 🏡', docTitle: '远方·在线水灯节 Loykratong Online',
         appSubtitle: '泰国传统水灯节文化 • 跨国放水灯祈福体验',
         countdownDays: '距水灯节还有 {n} 天 • {date}',
         countdownTomorrow: '明天就是水灯节！ • {date}',
@@ -228,7 +228,7 @@ const I18N = {
         btnBack: '返回', btnLaunch: '点燃蜡烛并放水灯',
         floatedAt: '放灯地点：', btnBless: '送上祝福', blessed: '已祝福', btnCloseInspector: '关闭',
         cardSuccess: '水灯已成功放入河中！',
-        btnCardImage: '生成祈福纪念卡图片', btnShareCard: '复制心愿并分享',
+        btnCardImage: '生成祈福纪念卡图片', btnSaveDraft: '保存这盏水灯的图片', btnShareCard: '复制心愿并分享',
         cardSaveHint: '长按（手机）或右键点击图片即可保存',
         btnViewRiver: '完成', btnNewKrathong: '+ 设计另一盏水灯',
         siamsiAsk: '🌕 放好啦！要不要摇一支吉祥签？', btnSiamsi: '摇签',
@@ -308,7 +308,7 @@ function setLanguage(lang) {
         'ui-btn-random-wish': 'btnRandomWish', 'ui-label-wish-cat': 'labelWishCat',
         'ui-cat-wealth': 'catWealth', 'ui-cat-love': 'catLove', 'ui-cat-health': 'catHealth', 'ui-cat-career': 'catCareer',
         'ui-btn-back': 'btnBack', 'ui-btn-launch': 'btnLaunch', 'ui-btn-close-inspector': 'btnCloseInspector',
-        'ui-card-success': 'cardSuccess', 'ui-btn-card-image': 'btnCardImage', 'ui-btn-share-card': 'btnShareCard',
+        'ui-card-success': 'cardSuccess', 'ui-btn-card-image': 'btnCardImage', 'ui-btn-save-draft': 'btnSaveDraft','ui-btn-share-card': 'btnShareCard',
         'ui-card-save-hint': 'cardSaveHint', 'ui-btn-view-river': 'btnViewRiver', 'ui-btn-new-krathong': 'btnNewKrathong',
         'ui-bg-modal-title': 'bgModalTitle', 'ui-bg-modal-desc': 'bgModalDesc',
         'ui-btn-reset-bg': 'btnResetBg', 'ui-btn-done-bg': 'btnDoneBg',
@@ -480,11 +480,11 @@ const DEMO_KRATHONGS = [
     ['demo-thne-2', 'ทีมงานริมโขง', 'northeast', 'coconut', 'lotus', 'elephant', 'ขอให้ผ่านทุกอุปสรรค งานรุ่ง เงินเข้า', 12],
     ['demo-ths-1', 'แก๊งทะเลอันดามัน', 'south', 'coconut', 'orchid', 'coins', 'ขอให้ร้านริมหาดขายดี นักท่องเที่ยวเต็มทุกวัน', 18],
     ['demo-ths-2', 'น้องฟ้า', 'south', 'ice', 'jasmine', 'diploma', 'ขอให้สอบติดคณะที่ฝันไว้', 9],
-    ['demo-kr-1', '지우 & Min', 'korea', 'lotus', 'rose', 'couple', '모두 행복하세요 — happy Loy Krathong from Seoul!', 16],
+    ['demo-kr-1', '지우 & Min', 'korea', 'lotus', 'rose', 'couple', '모두 행복하세요 — happy Loykratong from Seoul!', 16],
     ['demo-kr-2', 'Thai Students in Seoul', 'korea', 'banana', 'orchid', 'diploma', 'ขอให้เรียนจบได้ทุนต่อ สู้ๆ ทุกคน', 11],
     ['demo-jp-1', 'Yuki', 'japan', 'lotus', 'jasmine', 'garland', 'みんなが幸せになりますように', 19],
     ['demo-jp-2', 'คนไทยในโตเกียว', 'japan', 'bread', 'marigold', 'cat', 'ขอให้ร้านอาหารไทยในโตเกียวขายดี', 13],
-    ['demo-us-3', 'NYC Thai Community', 'usa', 'banana', 'marigold', 'elephant', 'Happy Loy Krathong from the East River!', 17],
+    ['demo-us-3', 'NYC Thai Community', 'usa', 'banana', 'marigold', 'elephant', 'Happy Loykratong from the East River!', 17],
     ['demo-cy-1', 'NeonKid_2077', 'cyberpunk', 'ice', 'orchid', 'diploma', 'ขอให้เขียนโค้ดไม่มีบั๊ก deploy ผ่านทุกรอบ', 22],
     ['demo-cy-2', 'Pixel & Byte', 'cyberpunk', 'lotus', 'rose', 'couple', 'Love in high resolution 💜', 14],
     ['demo-ju-1', 'แก๊งไดโนรักษ์โลก', 'jurassic', 'banana', 'marigold', 'elephant', 'ขอให้ผ่านทุกด่านเหมือนไดโนเสาร์ตัวใหญ่', 17],
@@ -496,14 +496,14 @@ const DEMO_KRATHONGS = [
     ['demo-hk-1', 'Linh & Alex', 'hongkong', 'bread', 'rose', 'couple', 'May our love shine as bright as Victoria Harbour lights.', 19],
     ['demo-hk-2', '陈家', 'hongkong', 'coconut', 'lotus', 'cat', '祝愿家人平安健康，阖家团圆。', 13],
     ['demo-us-1', 'Emily Chen', 'usa', 'ice', 'jasmine', 'cat', 'Sending peace and joy across the Hudson River!', 14],
-    ['demo-us-2', 'Thai Students in SF', 'usa', 'banana', 'orchid', 'incense', 'Good luck on finals, everyone — and happy Loy Krathong!', 9],
+    ['demo-us-2', 'Thai Students in SF', 'usa', 'banana', 'orchid', 'incense', 'Good luck on finals, everyone — and happy Loykratong!', 9],
     ['demo-gb-1', 'Oliver & Mia', 'england', 'coconut', 'marigold', 'incense', 'Blessings along the River Thames tonight.', 16],
     ['demo-gb-2', 'แพรวา (London)', 'england', 'lotus', 'jasmine', 'couple', 'ขอให้เรียนจบตามแผนและได้กลับบ้านไปหาแม่', 12],
     ['demo-fr-1', 'Camille Laurent', 'france', 'lotus', 'rose', 'couple', 'Bonheur et amour sur la Seine!', 21],
     ['demo-fr-2', 'Famille Martin', 'france', 'banana', 'jasmine', 'incense', 'Santé et paix pour toute la famille.', 8],
     ['demo-de-1', 'Lukas Weber', 'germany', 'banana', 'marigold', 'coins', 'Viel Glück und Gesundheit für alle!', 15],
     ['demo-de-2', 'Anna & Ploy', 'germany', 'ice', 'lotus', 'couple', 'Liebe über alle Grenzen hinweg.', 10],
-    ['demo-au-1', 'Chloe & Liam', 'australia', 'ice', 'orchid', 'cat', 'Celebrating Loy Krathong under the Sydney Harbour stars!', 22],
+    ['demo-au-1', 'Chloe & Liam', 'australia', 'ice', 'orchid', 'cat', 'Celebrating Loykratong under the Sydney Harbour stars!', 22],
     ['demo-au-2', 'ครอบครัวสุขใจ ซิดนีย์', 'australia', 'bread', 'marigold', 'coins', 'ขอให้ธุรกิจร้านอาหารไทยของเราเจริญรุ่งเรือง', 14]
 ].map(([id, name, country, base, flower, topping, wish, likes]) => ({ id, name, country, base, flower, topping, wish, likes, createdAt: 0, demo: true }));
 
@@ -701,7 +701,7 @@ function resizeCanvases() {
     resizeFireworksCanvas();
 }
 
-/* Countdown to Loy Krathong night (Bangkok calendar date) */
+/* Countdown to Loykratong night (Bangkok calendar date) */
 function updateCountdown() {
     const el = $('countdown-pill');
     const bkkToday = new Intl.DateTimeFormat('en-CA', { timeZone: 'Asia/Bangkok' }).format(new Date()); // YYYY-MM-DD
@@ -1291,8 +1291,22 @@ function roundRect(ctx, x, y, w, h, r) {
     else { ctx.moveTo(x + r, y); ctx.arcTo(x + w, y, x + w, y + h, r); ctx.arcTo(x + w, y + h, x, y + h, r); ctx.arcTo(x, y + h, x, y, r); ctx.arcTo(x, y, x + w, y, r); }
 }
 
-async function makeSouvenirImage() {
-    const k = lastLaunched;
+/* Save a picture of the krathong while designing (before floating).
+ * Reuses the souvenir renderer with the current design; the draft is never stored or uploaded. */
+function saveDraftKrathong() {
+    const name = $('user-name-input').value.trim().slice(0, MAX_NAME) || t('defaultSender');
+    const wish = $('user-wish-input').value.trim().slice(0, MAX_WISH) || t('defaultWish');
+    const draft = sanitizeKrathong({
+        id: 'draft', name, wish,
+        country: currentConfig.country, base: currentConfig.base, flower: currentConfig.flower,
+        topping: currentConfig.topping, topping2: currentConfig.topping2,
+        likes: 0, createdAt: Date.now()
+    });
+    if (draft) makeSouvenirImage(draft);
+}
+
+async function makeSouvenirImage(draft) {
+    const k = (draft && draft.id) ? draft : lastLaunched;
     if (!k) return;
     const btn = $('card-image-btn');
     btn.disabled = true;
@@ -1363,7 +1377,7 @@ async function makeSouvenirImage() {
         const dateStr = new Intl.DateTimeFormat(LOCALES[currentLang], { dateStyle: 'long' }).format(new Date(k.createdAt || Date.now()));
         ctx.fillStyle = 'rgba(226,232,240,0.85)';
         ctx.font = `400 28px ${font}`;
-        ctx.fillText(`${dateStr} • World Loy Krathong Online`, W / 2, 1300);
+        ctx.fillText(`${dateStr} • World Loykratong Online`, W / 2, 1300);
 
         const blob = await new Promise(res => cv.toBlob(res, 'image/png'));
         const url = URL.createObjectURL(blob);
