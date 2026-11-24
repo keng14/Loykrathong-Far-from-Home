@@ -105,10 +105,11 @@
         </nav>
 
         <div class="order-2 lg:order-3 flex items-center gap-1 sm:gap-1.5 ml-auto">
-            <div class="flex items-center bg-slate-900 border border-slate-700 rounded-xl p-0.5 text-[11px] font-bold" role="group" aria-label="Language">
-                <button onclick="setLanguage('th')" id="lang-btn-th" class="px-2 py-1 rounded-lg transition">ไทย</button>
-                <button onclick="setLanguage('en')" id="lang-btn-en" class="px-2 py-1 rounded-lg transition">EN</button>
-                <button onclick="setLanguage('zh')" id="lang-btn-zh" class="px-2 py-1 rounded-lg transition">中文</button>
+            <div class="flex items-center gap-0.5 bg-slate-900 border-2 border-gold-500/70 rounded-2xl p-1 text-sm font-bold shadow-lg shadow-gold-500/15" role="group" aria-label="Language">
+                <span class="px-1.5 text-base leading-none" aria-hidden="true">🌐</span>
+                <button onclick="setLanguage('th')" id="lang-btn-th" class="px-3 py-1.5 rounded-xl transition text-slate-200 hover:text-white hover:bg-slate-800">ไทย</button>
+                <button onclick="setLanguage('en')" id="lang-btn-en" class="px-3 py-1.5 rounded-xl transition text-slate-200 hover:text-white hover:bg-slate-800">EN</button>
+                <button onclick="setLanguage('zh')" id="lang-btn-zh" class="px-3 py-1.5 rounded-xl transition text-slate-200 hover:text-white hover:bg-slate-800">中文</button>
             </div>
             <button onclick="openTutorial()" class="hdr-btn" id="btn-help" aria-label="help">
                 <span class="w-4 text-center font-bold text-gold-400 leading-none">?</span>
@@ -367,10 +368,10 @@
         <!-- Stage B: title -->
         <div id="intro-stage-title" class="intro-stage hidden relative w-full max-w-2xl px-6 text-center safe-top max-h-[100dvh] overflow-y-auto custom-scrollbar py-8">
             <div class="flex justify-center mb-5">
-                <div class="flex items-center bg-night-900/80 border border-slate-700 rounded-xl p-0.5 text-[11px] font-bold" role="group" aria-label="Language">
-                    <button onclick="introPickLang('th', true)" data-lang="th" class="intro-lang-mini px-2.5 py-1 rounded-lg">ไทย</button>
-                    <button onclick="introPickLang('en', true)" data-lang="en" class="intro-lang-mini px-2.5 py-1 rounded-lg">EN</button>
-                    <button onclick="introPickLang('zh', true)" data-lang="zh" class="intro-lang-mini px-2.5 py-1 rounded-lg">中文</button>
+                <div class="flex items-center gap-1 bg-night-900/80 border-2 border-gold-500/70 rounded-2xl p-1.5 shadow-lg shadow-gold-500/15" role="group" aria-label="Language">
+                    <button onclick="introPickLang('th', true)" data-lang="th" class="intro-lang-mini px-4 py-2 rounded-xl text-sm font-bold">ไทย</button>
+                    <button onclick="introPickLang('en', true)" data-lang="en" class="intro-lang-mini px-4 py-2 rounded-xl text-sm font-bold">EN</button>
+                    <button onclick="introPickLang('zh', true)" data-lang="zh" class="intro-lang-mini px-4 py-2 rounded-xl text-sm font-bold">中文</button>
                 </div>
             </div>
             <div class="w-28 h-28 mx-auto floating-krathong" id="intro-krathong"></div>

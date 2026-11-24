@@ -1,5 +1,5 @@
 /* Service worker — offline shell + cached paintings. Bump VERSION when you deploy changes. */
-const VERSION = 'wlk-v9';
+const VERSION = 'wlk-v10';
 const CORE = [
     './', 'index.html', 'tailwind.css', 'styles.css', 'krathong-art.js', 'fortunes.js', 'app.js', 'manifest.webmanifest',
     'assets/icons/icon-192.png', 'assets/icons/icon-512.png',

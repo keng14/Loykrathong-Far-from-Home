@@ -292,8 +292,8 @@ function setLanguage(lang) {
 
     ['th', 'en', 'zh'].forEach(code => {
         $(`lang-btn-${code}`).className = code === lang
-            ? 'px-2 py-1 rounded-lg transition bg-gold-500 text-night-950 font-bold'
-            : 'px-2 py-1 rounded-lg transition text-slate-300 hover:text-white';
+            ? 'px-3 py-1.5 rounded-xl transition bg-gold-500 text-night-950 font-bold shadow'
+            : 'px-3 py-1.5 rounded-xl transition text-slate-200 hover:text-white hover:bg-slate-800';
     });
 
     const map = {
@@ -340,7 +340,7 @@ function setLanguage(lang) {
     renderSiamsiTopics();
     renderTutorialSteps();
     document.title = t('docTitle');
-    document.querySelectorAll('.intro-lang-mini').forEach(b => { b.className = 'intro-lang-mini px-2.5 py-1 rounded-lg ' + (b.dataset.lang === lang ? 'bg-gold-500 text-night-950' : 'text-slate-300 hover:text-white'); });
+    document.querySelectorAll('.intro-lang-mini').forEach(b => { b.className = 'intro-lang-mini px-4 py-2 rounded-xl text-sm font-bold transition ' + (b.dataset.lang === lang ? 'bg-gold-500 text-night-950 shadow' : 'text-slate-200 hover:text-white hover:bg-slate-800'); });
     if ($('intro-countdown')) $('intro-countdown').textContent = $('countdown-pill').textContent;
     if ($('location-modal').classList.contains('flex')) renderLocationPicker();
     if (lastFortune && !$('siamsi-stage-result').classList.contains('hidden')) renderFortune(lastFortune);
